@@ -1,33 +1,10 @@
-# Nicholas Palceski
-# This program will give accurate information regarding players Rocket League
-# career statistics.
-# SPRINT 1
-# ** --> 6**3 is 6 to the power of 3 which is 216
-# * used
-# / used
-# % used
-# // used
-# + used
-# - used
-# sep="" used
-# end="" brings together strings on separate lines and only put special
-# character between the strings rather than sep= which puts special character
-# between the words in a string.
-# SPRINT 2
-# x += 1 is a shortcut operator for x = x + 1 (Can be used with subtraction
-# and multiplication as well)
-# if else statements used
-# != (not equal) is the same as function "not" (not equal) except "not"
-# function returns a boolean expression whether two variables are equal or not.
-# that's why != is a relation operator and "not" function is a boolean operator
-# "and" operator checks if two conditions are met to then run a computation of
-# code.
-# "or" used
-# while loop used
-# for loops are used when you know how many times you want to loop a segment of
-# code. EX: for x in range(1, 11): will do a thing a code for x from 1-10
-# def functions used with parameters
+__author__ = "Nicholas Palceski"
+"""
+Nicholas Palceski
 
+This program will give accurate information regarding players Rocket League
+career statistics.
+"""
 
 # lists of ranks (global assignments)
 all_bronze = ["Bronze 1", "Bronze 2", "Bronze 3"]
@@ -40,8 +17,72 @@ all_gc = ["Grand Champ 1", "Grand Champ 2", "Grand Champ 3"]
 ssl = ["Supersonic Legend"]
 
 
-# calculates MMR based on rank and game mode selected.
+def print_sprint_req():
+    """
+    Prints sprint requirements.
+    """
+    print("--- SPRINT REQUIREMENTS ---")
+    print()
+    print("** --> 6**3 is 6 to the power of 3 which is 216")
+    print("* used")
+    print("/ used")
+    print("% used")
+    print("// used")
+    print("+ used")
+    print("- used")
+    print("sep='' used")
+    print("'or' used")
+    print("while loop used")
+    print("def functions used")
+    print("end="" brings together strings on separate lines and only ")
+    print("put special character between the strings rather than sep= which ")
+    print("puts special character between the words in a string.")
+    print("x = 1")
+    print("x += 1 = 2")
+    print("If / else statement used")
+    print("realMoney = True")
+    print("if money != realMoney:")
+    print("    return False")
+    print("'not' functions return a boolean expression whether two variables")
+    print("are equal or not.")
+    print("for x in range(1, 11):")
+    print("  print(x)")
+    print("prints the value of x 1 through 10.")
+    for x in range(1, 11):
+        print(x)
+    print("-"*31)
+
+
+def print_greetings():
+    """
+    Prints greeting to program and introduces UI.
+    """
+    print("Greetings!\nWelcome to my Rocket League inspired program!")
+    print("-----[ Rocket League MMR ]-----")
+    print("        1v1 , 2v2 , 3v3")
+
+
+def print_ranks():
+    """
+    Print the list of all the ranks in Rocket League.
+    """
+    print("-" * 31)
+    print('   '.join(all_bronze), "\n", '   '.join(all_silver))
+    print('   '.join(all_gold), "\n", '   '.join(all_plat))
+    print('   '.join(all_dia), "\n", '   '.join(all_champ))
+    print('   '.join(all_gc), "\n", '   '.join(ssl))
+    print("-" * 31)
+
+
 def calculate_mmr(r, gm):
+    """
+    Calculates Matchmaking Rank (MMR) based on one of the available game modes.
+    Parameters:
+            r (str): Rank that user chooses from options.
+            gm (str): Game mode that user chooses from options.
+    Returns:
+        Print statement that gives estimate MMR.
+    """
     while gm == "1v1" or gm == "2v2" or gm == "3v3":
         if gm == "1v1":
             if r == "bronze 1" or r == "Bronze 1":
@@ -257,52 +298,23 @@ def calculate_mmr(r, gm):
                 r = input("Enter competitive rank: ")
 
 
-def get_time(t_g):
-    # every RL game is roughly 5-6 minutes.
-    # NEED TO CALCULATE MINUTES TO HOURS AND DAYS
-    minutes = t_g * 5.5
-    hours = minutes // 60
-    days = hours // 24
-    minutes_left = minutes % 60
-    hours_left = hours % 24
-    # output est. total time played.
-    print("In-Game:\n", days, "d :", hours_left, "h :", minutes_left, "m")
-
-
-def main():
-    # greeting
-    print("Greetings!\nWelcome to my Rocket League inspired program!")
-    # Choose game mode (each game mode calculates MMR differently)
-    print("-----[ Rocket League MMR ]-----")
-    print("        1v1 , 2v2 , 3v3")
-    game_mode = input("Enter a game mode: ")
-    # Ask for list of ranks (if user does not know)
-    know_rank = input("Want to see a list of the ranks? (yes/no): ")
-    while True:
-        if know_rank == "Yes" or know_rank == "yes":
-            print("-" * 31)
-            print('   '.join(all_bronze), "\n", '   '.join(all_silver))
-            print('   '.join(all_gold), "\n", '   '.join(all_plat))
-            print('   '.join(all_dia), "\n", '   '.join(all_champ))
-            print('   '.join(all_gc), "\n", '   '.join(ssl))
-            print("-" * 31)
-            break
-        elif know_rank == "No" or know_rank == "no":
-            print("Great! You know your rank!")
-            break
-        else:
-            print("Please enter a valid response.")
-            know_rank = input("Want to see a list of the ranks? ")
-    # Enter rank in rocket league. (22 total ranks)
-    rank = input("Enter competitive rank: ")
-    calculate_mmr(rank, game_mode)
-    # separates program --> easier to read.
+def print_statistics_format():
+    """
+    Prints format to separate program to next section.
+    """
     print("------[ Statistics ]------")
-    # Enter if you want more statistics. (yes/no)
-    want_stats = input("Want to see additional stats? (yes/no): ")
-    # Gets statistics input and checks it.
+
+
+def get_stats(ws):
+    """
+    Gets extra statistics that the user inputs if they decide.
+    Parameters:
+            ws (str): Asks user if they want to see additional stats.
+    Returns:
+        Statistics that user wants to see.
+    """
     while True:
-        if want_stats == "yes" or want_stats == "Yes":
+        if ws == "yes" or ws == "Yes":
             # Ask for inputs from user before displaying output.
             total_games = float(input("Enter total # games played: "))
             games_won = float(input("Enter # games won: "))
@@ -334,7 +346,7 @@ def main():
                 total_goals = float(input("Enter total # of goals: "))
             # prints the string 31 times.
             print("-" * 31)
-            get_time(total_games)
+            get_time(int(total_games))
             # output games lost.
             games_lost = total_games - games_won
             print("Total games lost:", format(games_lost, '.0f'))
@@ -343,9 +355,9 @@ def main():
             # format to remove decimal places.
             print("Total shots missed:", format(shots_missed, '.0f'))
             print("-" * 31)
-            want_stats = input("Want to reenter stats? ")
+            ws = input("Want to reenter stats? ")
         # if user want no additional stats
-        elif want_stats == "no" or want_stats == "No":
+        elif ws == "no" or ws == "No":
             print("    Thank you for using our program,")
             print("          Goodbye!")
             break
@@ -353,7 +365,43 @@ def main():
             # concatenate two strings together then separates the strings
             # with a space.
             print("Please enter" + "a valid answer.", sep=" ")
-            want_stats = input("Want additional stats? ")
+            ws = input("Want additional stats? ")
 
 
-main()
+def get_time(t_g):
+    """
+    Gets the total time played by converting the minutes to days and hours.
+    Every Rocket League game is roughly 5-6 minutes.
+            Parameters:
+                    t_g (int): Total games played.
+            Returns:
+                Print statement that gives an estimate time played in-game.
+    """
+    minutes = t_g * 5.5
+    hours = minutes // 60
+    days = hours // 24
+    minutes_left = minutes % 60
+    hours_left = hours % 24
+    print("In-Game:\n", days, "d :", hours_left, "h :", minutes_left, "m")
+
+
+def main():
+    """
+    Calculates MMR based on rank and game mode entered for Rocket League.
+    Can show additional statistics if user chooses to do so.
+    Additional statistics such as games lost, goals missed, total time in-game,
+    etc.
+    """
+    print_sprint_req()
+    print_greetings()
+    game_mode = input("Enter a game mode: ")
+    print_ranks()
+    rank = input("Enter competitive rank: ")
+    calculate_mmr(rank, game_mode)
+    print_statistics_format()
+    want_stats = input("Want to see additional stats? (yes/no): ")
+    get_stats(want_stats)
+
+
+if __name__ == "__main__":
+    main()
